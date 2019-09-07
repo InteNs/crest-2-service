@@ -1,0 +1,30 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool:     <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  database: <%= ENV['DATABASE_NAME'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASS'] %>
+  host:     <%= ENV['DATABASE_HOST'] %>
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+production:
+  <<: *default
+
+# On Heroku and other platform providers, you may have a full connection URL
+# available as an environment variable. For example:
+#
+#   DATABASE_URL="postgres://myuser:mypass@localhost/somedatabase"
+#
+# You can use this database configuration with:
+#
+#   production:
+#     url: <%= ENV['DATABASE_URL'] %>
+#
